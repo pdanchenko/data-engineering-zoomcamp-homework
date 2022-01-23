@@ -1,0 +1,6 @@
+
+*.tfstate*
+*.terraform*
+*.csv
+week_1_basics_n_setup/terraform/variables.tf
+week_1_basics_n_setup/docker/ny_taxi_postgres_data/*
