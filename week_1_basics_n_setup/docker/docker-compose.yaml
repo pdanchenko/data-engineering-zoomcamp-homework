@@ -16,6 +16,10 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=root
     ports:
       - "8088:80"
+  cloudbeaver:
+    image: dbeaver/cloudbeaver:latest
+    ports:
+      - "8089:8978"
     
 
 # docker run -it  -e POSTGRES_USER="root" -e POSTGRES_PASSWORD="root" -e POSTGRES_DB="ny_taxi" -v C:/work/Repos/data-engineering-zoomcamp-homeworkdweek_1_basics_n_setupddockerdny_taxi_postgres_data:/var/lib/postgresql/data  -p 5432:5432 postgres:13
