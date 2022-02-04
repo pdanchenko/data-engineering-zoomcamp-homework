@@ -42,8 +42,22 @@ resource "google_storage_bucket" "data-lake-bucket" {
 
 # DWH
 # Ref: https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset
-resource "google_bigquery_dataset" "dataset" {
-  dataset_id = var.BQ_DATASET
+resource "google_bigquery_dataset" "dataset_yellow_taxi" {
+  dataset_id = var.BQ_YELLOW_TAXI_DATASET
   project    = var.project
   location   = var.region
 }
+
+resource "google_bigquery_dataset" "dataset_fhv" {
+  dataset_id = var.BQ_FHV_DATASET
+  project    = var.project
+  location   = var.region
+}
+
+resource "google_bigquery_dataset" "dataset_zones" {
+  dataset_id = var.BQ_ZONES_DATASET
+  project    = var.project
+  location   = var.region
+}
+
+
