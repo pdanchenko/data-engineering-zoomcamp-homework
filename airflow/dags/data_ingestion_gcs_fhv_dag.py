@@ -21,6 +21,7 @@ path_to_local_home = os.environ.get("AIRFLOW_HOME", "/opt/airflow/")
 parquet_file = dataset_file.replace('.csv', '.parquet')
 BIGQUERY_YELLOW_TAXI_DATASET = os.environ.get("BQ_YELLOW_TAXI_DATASET", 'yellow_taxi_data_all')
 BIGQUERY_FHV_DATASET = os.environ.get("BQ_FHV_DATASET", 'trips_fhv_data_all')
+print("ZZZ {{dataset_file}}")
 
 
 def format_to_parquet(src_file):
@@ -54,8 +55,7 @@ def upload_to_gcs(bucket, object_name, local_file):
 
 
 default_args = {
-    "owner": "airflow",
-    "depends_on_past": False,
+    "owner": "airflow"
 }
 
 # NOTE: DAG declaration - using a Context Manager (an implicit way)
@@ -100,11 +100,12 @@ with DAG(
             "tableReference": {
                 "projectId": PROJECT_ID,
                 "datasetId": BIGQUERY_FHV_DATASET,
-                "tableId": "external_table",
+                "tableId": "fhv_data",
             },
             "externalDataConfiguration": {
+                "autodetect": True,
                 "sourceFormat": "PARQUET",
-                "sourceUris": [f"gs://{BUCKET}/fhv/{parquet_file}"],
+                "sourceUris": [f"gs://{BUCKET}/fhv/*"],
             },
         },
     )

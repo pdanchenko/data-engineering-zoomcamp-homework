@@ -60,4 +60,9 @@ resource "google_bigquery_dataset" "dataset_zones" {
   location   = var.region
 }
 
+# resource "google_bigquery_table" "sheet" {
+#   dataset_id = google_bigquery_dataset.dataset_yellow_taxi.dataset_id
+#   table_id   = var.BQ_YELLOW_TAXI_DATASET
+# }
+
 
